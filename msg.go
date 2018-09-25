@@ -61,8 +61,6 @@ func (dp *dispatcher) dispatch(op *wechatbot.Op) {
   case wechatbot.MsgOp:
     dp.processMsg(op)
 
-  case wechatbot.ContactDelOp, wechatbot.ContactModOp:
-
   case wechatbot.ContactListOp:
     if dp.bot.GetAttrBool(wechatbot.AttrPersistentIDEnabled) {
       dp.persistContacts()
@@ -85,12 +83,14 @@ func (dp *dispatcher) persistContacts() {
   defer tx.Commit()
   aid := 0
   dp.bot.Contacts.Each(func(c *wechatbot.Contact) bool {
+    disturb := 0
     if c.ID != "" {
-      tx.QueryRow(`SELECT _id FROM user WHERE id=? LIMIT 1`, c.ID).Scan(&aid)
+      tx.QueryRow(`SELECT _id, disturb FROM user WHERE id=? LIMIT 1`, c.ID).Scan(&aid, &disturb)
+      c.Raw[attrDisturb] = disturb != 0
       if aid == 0 {
         tx.Exec(`INSERT INTO user (id, nickname, create_time, uin) VALUES (?, ?, ?, ?)`, c.ID, c.Nickname, times.NowStr(), c.Uin)
       } else {
-        tx.Exec(`UPDATE user SET nickname=?, uin=? WHERE id=?`, c.Nickname, c.Uin, c.ID)
+        tx.Exec(`UPDATE user SET nickname=? WHERE id=?`, c.Nickname, c.ID)
       }
     }
     return true
@@ -108,7 +108,7 @@ func persistContact(c *wechatbot.Contact) {
   if aid == 0 {
     tx.Exec(`INSERT INTO user (id, nickname, create_time, uin) VALUES (?, ?, ?, ?)`, c.ID, c.Nickname, times.NowStr(), c.Uin)
   } else {
-    tx.Exec(`UPDATE user SET nickname=?, uin=? WHERE id=?`, c.Nickname, c.Uin, c.ID)
+    tx.Exec(`UPDATE user SET nickname=? WHERE id=?`, c.Nickname, c.ID)
   }
 }
 

@@ -1,22 +1,18 @@
 #!/bin/bash
 
+go build -ldflags "-w -s"
+mkdir -p /hiprice/admin
+cp -f hiprice-chatbot /hiprice/chatbot
+cp -f conf.yaml /hiprice/
+cp -f assets/welcome1.png /hiprice/
+cp -f assets/welcome2.png /hiprice/
+cp -f assets/welcome.mp4 /hiprice/
+go clean
+
 cd admin
 rm -rf dist/
-npm run build
+yarn run build
+cp -rf dist/. /hiprice/admin/
 
-cd ..
-go clean
-go build -ldflags "-w -s"
-
-target=/var/hiprice/hiprice-chatbot/
-
-mkdir -p $target/admin/
-cp -rf admin/dist/. ${target}/admin/
-cp -f hiprice-chatbot $target
-cp -f conf.yaml $target
-cp -f assets/welcome1.png $target
-cp -f assets/welcome2.png $target
-cp -f assets/welcome.mp4 $target
-
-cd $target
-nohup ./hiprice-chatbot > /dev/null 2>&1 &
+cd /hiprice
+nohup ./chatbot > /dev/null 2>&1 &

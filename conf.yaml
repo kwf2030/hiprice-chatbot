@@ -6,24 +6,24 @@ server:
   # 如果是HTTPS改为443
   port: 80
   # HTTPS证书和私钥
-  #cert: '/etc/letsencrypt/live/xx.xx/fullchain.pem'
-  #key: '/etc/letsencrypt/live/xx.xx/privkey.pem'
+  #cert: '/etc/letsencrypt/live/hiprice.cn/fullchain.pem'
+  #key: '/etc/letsencrypt/live/hiprice.cn/privkey.pem'
   user: 'admin'
   password: 'admin'
-  cdn: 'http://xx.xx'
+  cdn: 'http://cdn.hiprice.cn'
   # 跨域列表（cdn默认在内）
-  #cors: ['http://xx.xx']
+  #cors: ['']
 
 # 下线短信通知手机号，使用阿里云的消息服务
 mms:
   # 0：禁用，1：启用
   enabled: 0
-  endpoint_host: 'https://xx.aliyuncs.com'
-  endpoint_path: '/topics/sms.topic-cn-hangzhou/messages'
-  sign: 'xx'
-  template_code: 'xx'
-  token: 'xx'
-  tel: 'xx'
+  #endpoint_host: 'https://xx.aliyuncs.com'
+  #endpoint_path: '/topics/sms.topic-cn-hangzhou/messages'
+  #sign: ''
+  #template_code: ''
+  #token: ''
+  #tel: ''
 
 log:
   dir: 'log'
@@ -49,5 +49,5 @@ task:
   polling_interval: 2
   # 连续不间断的发送消息的最大数
   max_send: 60
-  # 如果消息数超过最大值，超过部分等待发送的延迟时间
+  # 如果消息数超过最大值，超过部分等待发送的延迟时间（秒）
   max_send_delay: 30
