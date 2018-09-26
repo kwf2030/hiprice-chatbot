@@ -52,17 +52,17 @@ func adminMux() *http.ServeMux {
 }
 
 // 支持跨域
-// GET  /api/v1/watchlist?u=xx
-// POST /api/v1/unwatch?u=xx
-// POST /api/v1/remind?u=xx
-// POST /api/v1/settings?u=xx
-func apiMux() *http.ServeMux {
+// GET  /web/api/watchlist?u=xx
+// POST /web/api/unwatch?u=xx
+// POST /web/api/remind?u=xx
+// POST /web/api/settings?u=xx
+func webMux() *http.ServeMux {
   ret := http.NewServeMux()
   ret.HandleFunc("/", http.NotFound)
-  ret.HandleFunc("/api/v1/watchlist", watchListHandler)
-  ret.HandleFunc("/api/v1/unwatch", unwatchHandler)
-  ret.HandleFunc("/api/v1/remind", remindHandler)
-  ret.HandleFunc("/api/v1/settings", settingsHandler)
+  ret.HandleFunc("/web/api/watchlist", watchListHandler)
+  ret.HandleFunc("/web/api/unwatch", unwatchHandler)
+  ret.HandleFunc("/web/api/remind", remindHandler)
+  ret.HandleFunc("/web/api/settings", settingsHandler)
   return ret
 }
 
@@ -74,7 +74,7 @@ func launchServer() {
     AllowCredentials: true,
   })
   admin := adminMux()
-  api := apiMux()
+  web := webMux()
   handler := func(w http.ResponseWriter, r *http.Request) {
     p := r.URL.Path
     if p == "/favicon.ico" {
@@ -96,7 +96,7 @@ func launchServer() {
       h.ServeHTTP(w, r)
       return
     }
-    h, _ := api.Handler(r)
+    h, _ := web.Handler(r)
     cs.Handler(h).ServeHTTP(w, r)
   }
   server := &http.Server{

@@ -23,7 +23,7 @@ type ServerConf struct {
   Key      string   `yaml:"key"`
   User     string   `yaml:"user"`
   Password string   `yaml:"password"`
-  CDN      string   `yaml:"cdn"`
+  Web      string   `yaml:"web"`
   Cors     []string `yaml:"cors"`
 }
 
@@ -73,6 +73,6 @@ func LoadConf(file string) error {
   if e != nil {
     return e
   }
-  Conf.Server.Cors = append(Conf.Server.Cors, Conf.Server.CDN)
+  Conf.Server.Cors = append(Conf.Server.Cors, Conf.Server.Web)
   return nil
 }

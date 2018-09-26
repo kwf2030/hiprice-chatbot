@@ -1,17 +1,16 @@
-email: 'kwf2030@163.com'
+email: 'mail@domain'
 
-# admin和web目录的前端项目在编译前需要修改对应config/prod.env.js中的环境
 server:
   host: '0.0.0.0'
   # 如果是HTTPS改为443
   port: 80
   # HTTPS证书和私钥
-  #cert: '/etc/letsencrypt/live/hiprice.cn/fullchain.pem'
-  #key: '/etc/letsencrypt/live/hiprice.cn/privkey.pem'
+  #cert: '/etc/letsencrypt/live/your.domain/fullchain.pem'
+  #key: '/etc/letsencrypt/live/your.domain/privkey.pem'
   user: 'admin'
   password: 'admin'
-  cdn: 'http://cdn.hiprice.cn'
-  # 跨域列表（cdn默认在内）
+  web: 'http://127.0.0.1:8080'
+  # 跨域列表（默认包含web）
   #cors: ['']
 
 # 下线短信通知手机号，使用阿里云的消息服务
