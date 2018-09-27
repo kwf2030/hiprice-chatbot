@@ -10,7 +10,7 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
 Vue.prototype.$axios = Axios
-Axios.defaults.baseURL = process.env.AXIOS_BASE_URL
+// Axios.defaults.baseURL = process.env.AXIOS_BASE_URL
 Axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 Vue.config.productionTip = false

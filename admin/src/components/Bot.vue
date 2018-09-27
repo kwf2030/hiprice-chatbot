@@ -70,7 +70,7 @@
           </v-flex>
 
           <v-flex v-if="qrCodeUrl !== ''" class="pb-3" d-flex justify-center>
-            <v-card-media :src="qrCodeUrl" height="320"></v-card-media>
+            <v-img :src="qrCodeUrl" height="320"></v-img>
           </v-flex>
         </v-card>
       </v-dialog>
@@ -116,7 +116,7 @@
 
     methods: {
       getBots () {
-        this.$axios.get('bots').then(resp => {
+        this.$axios.get('/admin/api/bots').then(resp => {
           if (resp.data.ret !== 0) {
             console.log(resp.data.status)
             return
@@ -130,7 +130,7 @@
       login () {
         this.qrCodeDialog = true
         this.qrCodeLoading = true
-        this.$axios.post('bot').then(resp => {
+        this.$axios.post('/admin/api/bot').then(resp => {
           if (resp.data.ret !== 0) {
             console.log(resp.data.status)
             return
@@ -160,7 +160,7 @@
 
       getLoginState () {
         let uuid = this.qrCodeUrl.slice(this.qrCodeUrl.lastIndexOf('/') + 1)
-        this.$axios.get('bot?uuid=' + uuid).then(resp => {
+        this.$axios.get('/admin/api/bot?uuid=' + uuid).then(resp => {
           if (resp.data.ret !== 0) {
             console.log(resp.data.status)
             return
@@ -194,7 +194,7 @@
       },
 
       logout () {
-        this.$axios.delete('bot?uin=' + this.logoutUin).then(resp => {
+        this.$axios.delete('/admin/api/bot?uin=' + this.logoutUin).then(resp => {
           if (resp.data.ret !== 0) {
             console.log(resp.data.status)
             return
