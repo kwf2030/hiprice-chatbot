@@ -40,7 +40,12 @@ func adminMux() *http.ServeMux {
   ret.HandleFunc("/", http.NotFound)
   ret.HandleFunc("/admin", func(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "text/html")
-    data, _ := ioutil.ReadFile("admin/index.html")
+    data, e := ioutil.ReadFile("admin/index.html")
+    if e != nil {
+      logger.Error().Err(e).Msg("ERR: ReadFile")
+      w.WriteHeader(http.StatusInternalServerError)
+      return
+    }
     w.Write(data)
   })
   ret.HandleFunc("/admin/static/", func(w http.ResponseWriter, r *http.Request) {
