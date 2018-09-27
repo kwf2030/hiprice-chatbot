@@ -79,7 +79,7 @@
     <v-layout row justify-center>
       <v-dialog v-model="logoutDialog">
         <v-card>
-          <v-card-title class="headline">确定退出登录？</v-card-title>
+          <v-card-title class="headline">确定退出？</v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn flat="flat" @click.native="dismissLogoutDialog()">取消</v-btn>
@@ -108,7 +108,7 @@
     }),
 
     created () {
-      Bus.$on('fab-click', () => {
+      Bus.$on('fab.click', () => {
         this.login()
       })
       this.getBots()
@@ -135,7 +135,7 @@
             console.log(resp.data.status)
             return
           }
-          this.qrCodeUrl = resp.data.data.qrcode_url
+          this.qrCodeUrl = resp.data.data.qrcode
           this.qrCodeLoading = false
           let token = setInterval(() => {
             if (this.qrCodeState < 0) {

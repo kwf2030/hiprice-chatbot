@@ -30,7 +30,7 @@
     }),
 
     created () {
-      Bus.$on('fab', show => {
+      Bus.$on('fab.visible', show => {
         if (show !== undefined && show !== this.showFab) {
           this.showFab = show
         }
@@ -39,7 +39,7 @@
 
     methods: {
       onFabClick () {
-        Bus.$emit('fab-click')
+        Bus.$emit('fab.click')
       }
     }
   }
