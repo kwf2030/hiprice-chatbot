@@ -4,9 +4,7 @@ go build -ldflags "-w -s"
 mkdir -p /hiprice/admin
 cp -f hiprice-chatbot /hiprice/chatbot
 cp -f conf.yaml /hiprice/
-cp -f assets/welcome1.png /hiprice/
-cp -f assets/welcome2.png /hiprice/
-cp -f assets/welcome.mp4 /hiprice/
+cp -rf assets/. /hiprice/
 go clean
 
 cd admin

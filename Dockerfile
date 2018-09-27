@@ -17,7 +17,7 @@ RUN git clone https://github.com/golang/net.git
 
 WORKDIR $GOPATH/src/go.etcd.io
 
-RUN git clone https://github.com/etcd-io/bbolt
+RUN git clone https://github.com/etcd-io/bbolt.git
 
 RUN go get github.com/kwf2030/hiprice-chatbot
 
@@ -26,9 +26,7 @@ WORKDIR $GOPATH/src/github.com/kwf2030/hiprice-chatbot
 RUN go build -ldflags "-w -s" && \
     cp hiprice-chatbot /hiprice/chatbot && \
     cp conf.yaml /hiprice/ && \
-    cp assets/welcome1.png /hiprice/ && \
-    cp assets/welcome2.png /hiprice/ && \
-    cp assets/welcome.mp4 /hiprice/ && \
+    cp -r assets/. /hiprice/ && \
     go clean
 
 WORKDIR $GOPATH/src/github.com/kwf2030/hiprice-chatbot/admin
