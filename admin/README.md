@@ -1,6 +1,4 @@
-# hiprice
-
-> HiPrice
+# hiprice-admin
 
 ## Build Setup
 
