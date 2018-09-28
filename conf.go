@@ -17,14 +17,13 @@ var Conf = &struct {
 }{}
 
 type ServerConf struct {
-  Host     string   `yaml:"host"`
-  Port     int      `yaml:"port"`
-  Cert     string   `yaml:"cert"`
-  Key      string   `yaml:"key"`
-  User     string   `yaml:"user"`
-  Password string   `yaml:"password"`
-  Web      string   `yaml:"web"`
-  Cors     []string `yaml:"cors"`
+  Host     string `yaml:"host"`
+  Port     int    `yaml:"port"`
+  Cert     string `yaml:"cert"`
+  Key      string `yaml:"key"`
+  User     string `yaml:"user"`
+  Password string `yaml:"password"`
+  Web      string `yaml:"web"`
 }
 
 type MMSConf struct {
@@ -73,6 +72,5 @@ func LoadConf(file string) error {
   if e != nil {
     return e
   }
-  Conf.Server.Cors = append(Conf.Server.Cors, Conf.Server.Web)
   return nil
 }

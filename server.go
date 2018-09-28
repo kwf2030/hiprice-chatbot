@@ -7,9 +7,12 @@ import (
 
   "github.com/kwf2030/commons/conv"
   "github.com/rs/cors"
+  "strings"
 )
 
 var favicon []byte
+
+var hostPort string
 
 func sendResp(w http.ResponseWriter, ret int, status string, data interface{}) {
   m := make(map[string]interface{}, 3)
@@ -72,12 +75,7 @@ func webMux() *http.ServeMux {
 }
 
 func launchServer() {
-  cs := cors.New(cors.Options{
-    AllowedOrigins:   Conf.Server.Cors,
-    AllowedMethods:   []string{"GET", "POST", "DELETE"},
-    MaxAge:           86400,
-    AllowCredentials: true,
-  })
+  cs := cors.AllowAll()
   admin := adminMux()
   web := webMux()
   handler := func(w http.ResponseWriter, r *http.Request) {
@@ -129,8 +127,16 @@ func redirectHTTP() {
       w.WriteHeader(http.StatusBadRequest)
       return
     }
+    if hostPort == "" {
+      i := strings.Index(r.Host, ":")
+      if i == -1 {
+        hostPort = fmt.Sprintf("%s:%d", r.Host, Conf.Server.Port)
+      } else {
+        hostPort = fmt.Sprintf("%s:%d", r.Host[:i], Conf.Server.Port)
+      }
+    }
+    r.URL.Host = hostPort
     r.URL.Scheme = "https"
-    r.URL.Host = r.Host
     http.Redirect(w, r, r.URL.String(), http.StatusMovedPermanently)
   }))
   if e != nil {
