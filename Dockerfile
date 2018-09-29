@@ -1,10 +1,10 @@
 FROM golang:1.11-alpine3.8
 
 LABEL maintainer="kwf2030 <kwf2030@163.com>" \
-      version="0.1.0"
+      version=0.1.0
 
-RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories && \
-    echo "http://mirrors.aliyun.com/alpine/v3.8/community" >> /etc/apk/repositories
+RUN echo http://mirrors.aliyun.com/alpine/v3.8/main > /etc/apk/repositories && \
+    echo http://mirrors.aliyun.com/alpine/v3.8/community >> /etc/apk/repositories
 
 RUN apk update && \
     apk upgrade && \
