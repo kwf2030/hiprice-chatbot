@@ -1,7 +1,7 @@
 {
-  "name": "hiprice",
+  "name": "hiprice-admin",
   "version": "0.1.0",
-  "description": "HiPrice",
+  "description": "HiPrice Admin",
   "author": "kwf2030 <kwf2030@163.com>",
   "private": true,
   "scripts": {
