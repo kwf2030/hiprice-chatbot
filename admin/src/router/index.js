@@ -8,13 +8,13 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      redirect: '/admin/bots'
-    },
-    {
       path: '/admin/bots',
       name: 'Bot',
       component: Bot
+    },
+    {
+      path: '/',
+      redirect: '/admin/bots'
     }
   ]
 })
