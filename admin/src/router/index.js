@@ -5,16 +5,16 @@ import Bot from '@/components/Bot'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
-      path: '/admin/bots',
+      path: '/bot',
       name: 'Bot',
       component: Bot
     },
     {
       path: '/',
-      redirect: '/admin/bots'
+      redirect: '/bot'
     }
   ]
 })

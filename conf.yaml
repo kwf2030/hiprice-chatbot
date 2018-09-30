@@ -2,13 +2,13 @@ email: 'mail@domain'
 
 server:
   host: '0.0.0.0'
-  port: 80
+  port: 6200
   # HTTPS证书和私钥
   #cert: '/etc/letsencrypt/live/your.domain/fullchain.pem'
   #key: '/etc/letsencrypt/live/your.domain/privkey.pem'
   user: 'admin'
   password: 'admin'
-  web: 'http://hiprice-web:8080'
+  web: 'http://hiprice-web:6100'
 
 # 下线短信通知手机号，使用阿里云的消息服务
 mms:

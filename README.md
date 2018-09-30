@@ -9,4 +9,4 @@ docker pull wf2030/hiprice-chatbot:0.1.0
 ```
 
 ## Run
-`docker run -d --name hiprice-chatbot -p 80:80 --link mariadb:mariadb --link beanstalk:beanstalk --link hiprice-web:hiprice-web hiprice-chatbot`
+`docker run -d --name hiprice-chatbot -p 6200:6200 --link mariadb:mariadb --link beanstalk:beanstalk --link hiprice-web:hiprice-web hiprice-chatbot`
