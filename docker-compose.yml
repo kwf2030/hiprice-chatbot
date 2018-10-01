@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  mariadb:
+    build: ./mariadb
+    image: wf2030/mariadb:10.3
+    networks:
+      - hpnet
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  beanstalk:
+    build: ./beanstalk
+    image: wf2030/beanstalk:1.11
+    networks:
+      - hpnet
+    ports:
+      - 11300:11300
+
+  hiprice-dispatcher:
+    build: ./hiprice-dispatcher
+    image: wf2030/hiprice-dispatcher:0.1.0
+    networks:
+      - hpnet
+    depends_on:
+      - mariadb
+      - beanstalk
+  
+  hiprice-web:
+    build:
+      context: ./hiprice-web
+      args:
+        CHATBOT_SERVER: localhost:6200
+    image: wf2030/hiprice-web:0.1.0
+    networks:
+      - hpnet
+    ports:
+      - 6100:6100
+
+  hiprice-chatbot:
+    build: ./hiprice-chatbot
+    image: wf2030/hiprice-chatbot:0.1.0
+    networks:
+      - hpnet
+    ports:
+      - 6200:6200
+    depends_on:
+      - mariadb
+      - beanstalk
+
+networks:
+  hpnet:
+    driver: bridge
