@@ -8,7 +8,7 @@ server:
   #key: '/etc/letsencrypt/live/your.domain/privkey.pem'
   user: 'admin'
   password: 'admin'
-  web: 'http://hiprice-web:6100'
+  web: 'http://localhost:6100'
 
 # 下线短信通知手机号，使用阿里云的消息服务
 mms:
