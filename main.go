@@ -14,6 +14,7 @@ import (
   "github.com/kwf2030/commons/boltdb"
   "github.com/kwf2030/commons/times"
   "github.com/rs/zerolog"
+  "errors"
 )
 
 const Version = "0.1.0"
@@ -100,24 +101,28 @@ func initLogger() {
 }
 
 func initDB() {
-  c := mysql.NewConfig()
-  c.Net = "tcp"
-  c.Addr = fmt.Sprintf("%s:%d", Conf.Database.Host, Conf.Database.Port)
-  c.Collation = "utf8mb4_unicode_ci"
-  c.User = Conf.Database.User
-  c.Passwd = Conf.Database.Password
-  c.DBName = Conf.Database.DB
-  c.Loc = times.TimeZoneSH
-  c.ParseTime = true
-  c.Params = Conf.Database.Params
-  var e error
-  db, e = sql.Open("mysql", c.FormatDSN())
-  if e != nil {
-    panic(e)
+  for i := 0; i < 3; i++ {
+    c := mysql.NewConfig()
+    c.Net = "tcp"
+    c.Addr = fmt.Sprintf("%s:%d", Conf.Database.Host, Conf.Database.Port)
+    c.Collation = "utf8mb4_unicode_ci"
+    c.User = Conf.Database.User
+    c.Passwd = Conf.Database.Password
+    c.DBName = Conf.Database.DB
+    c.Loc = times.TimeZoneSH
+    c.ParseTime = true
+    c.Params = Conf.Database.Params
+    var e error
+    db, e = sql.Open("mysql", c.FormatDSN())
+    if e != nil {
+      logger.Info().Msg("database connect failed, will retry 30 seconds later")
+      time.Sleep(time.Second * 30)
+      continue
+    }
+    break
   }
-  e = db.Ping()
-  if e != nil {
-    panic(e)
+  if db == nil {
+    panic(errors.New("no database connection"))
   }
 }
 
