@@ -206,51 +206,56 @@ func (dp *dispatcher) processMsg(op *wechatbot.Op) {
     return
   }
 
-  if op.Msg.Type == wechatbot.MsgText {
-    if op.Msg.Content == "帮助" {
-      var addr string
-      v := kv.Get(bucketVar, []byte("help"))
-      if v == nil {
-        s1 := fmt.Sprintf("%s/web/help", Conf.Server.Web)
-        s2 := httputil.ShortenURL(s1)
-        if s2 == "" {
-          s2 = s1
-        } else {
-          kv.UpdateV(bucketVar, []byte("help"), []byte(s2))
-        }
-        addr = s2
-      } else {
-        addr = string(v)
-      }
-      op.Msg.ReplyText(fmt.Sprintf("更多好玩的功能\n%s\n随时更新，常来看看哦", addr))
-      return
-    }
-    if op.Msg.Content == "我" {
-      v := []byte(op.Msg.FromUserID)
-      k := fmt.Sprintf("%x", md5.Sum(v))
-      kv.UpdateV(bucketUserID, []byte(k), v)
-      s1 := fmt.Sprintf("%s/web/?u=%s", Conf.Server.Web, k)
+  if op.Msg.Type != wechatbot.MsgText {
+    op.Msg.ReplyText(replyTpl[rand.Intn(len(replyTpl))])
+    return
+  }
+
+  switch {
+  case op.Msg.Content == "帮助", strings.ToLower(op.Msg.Content) == "help":
+    var addr string
+    v := kv.Get(bucketVar, []byte("help"))
+    if v == nil {
+      s1 := fmt.Sprintf("%s/web/help", Conf.Server.Web)
       s2 := httputil.ShortenURL(s1)
       if s2 == "" {
         s2 = s1
+      } else {
+        kv.UpdateV(bucketVar, []byte("help"), []byte(s2))
       }
-      op.Msg.ReplyText("管理关注的宝贝，请移步\n" + s2)
-      return
+      addr = s2
+    } else {
+      addr = string(v)
     }
+    op.Msg.ReplyText(fmt.Sprintf("更多好玩的功能\n%s\n随时更新，常来看看哦", addr))
 
+  case op.Msg.Content == "我", strings.ToLower(op.Msg.Content) == "me":
+    v := []byte(op.Msg.FromUserID)
+    k := fmt.Sprintf("%x", md5.Sum(v))
+    kv.UpdateV(bucketUserID, []byte(k), v)
+    s1 := fmt.Sprintf("%s/web/?u=%s", Conf.Server.Web, k)
+    s2 := httputil.ShortenURL(s1)
+    if s2 == "" {
+      s2 = s1
+    }
+    op.Msg.ReplyText("管理关注的宝贝，请移步\n" + s2)
+
+  case strings.Contains(op.Msg.Content, "手淘") && strings.Contains(op.Msg.Content, "复制这条信息"):
     // 如果检测到是淘宝/天猫APP分享且没有地址的，
     // 提示分享的时候使用复制链接而不是分享到微信
-    if strings.Contains(op.Msg.Content, "手淘") && strings.Contains(op.Msg.Content, "复制这条信息") {
-      if !urlRegex.MatchString(op.Msg.Content) {
-        op.Msg.ReplyText("亲~由于手淘的限制，在手淘APP中点击分享后请选择『复制链接』，再到微信中粘贴发给我，劳烦重发一次喽")
-      }
-    } else if strings.Contains(op.Msg.Content, "天猫") && strings.Contains(op.Msg.Content, "复制整段信息") && strings.Contains(op.Msg.Content, "喵口令") {
-      if !urlRegex.MatchString(op.Msg.Content) {
-        op.Msg.ReplyText("亲~由于天猫的限制，在天猫APP中点击分享后请选择『复制口令』或『复制链接』，再到微信中粘贴发给我，劳烦重发一次喽")
-      }
+    if !urlRegex.MatchString(op.Msg.Content) {
+      op.Msg.ReplyText("亲~由于手淘的限制，在手淘APP中点击分享后请选择『复制链接』，再到微信中粘贴发给我，劳烦重发一次喽")
+    } else {
+      op.Msg.ReplyText(replyTpl[rand.Intn(len(replyTpl))])
+    }
+
+  case strings.Contains(op.Msg.Content, "天猫") && strings.Contains(op.Msg.Content, "复制整段信息") && strings.Contains(op.Msg.Content, "喵口令"):
+    if !urlRegex.MatchString(op.Msg.Content) {
+      op.Msg.ReplyText("亲~由于天猫的限制，在天猫APP中点击分享后请选择『复制口令』或『复制链接』，再到微信中粘贴发给我，劳烦重发一次喽")
+    } else {
+      op.Msg.ReplyText(replyTpl[rand.Intn(len(replyTpl))])
     }
   }
-  op.Msg.ReplyText(replyTpl[rand.Intn(len(replyTpl))])
 }
 
 func intercept(msg *wechatbot.Message) (string, bool) {
