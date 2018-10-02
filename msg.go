@@ -211,7 +211,7 @@ func (dp *dispatcher) processMsg(op *wechatbot.Op) {
       var addr string
       v := kv.Get(bucketVar, []byte("help"))
       if v == nil {
-        s1 := fmt.Sprintf("%s/help", Conf.Server.Web)
+        s1 := fmt.Sprintf("%s/web/help", Conf.Server.Web)
         s2 := httputil.ShortenURL(s1)
         if s2 == "" {
           s2 = s1
