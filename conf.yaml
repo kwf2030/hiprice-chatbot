@@ -1,4 +1,4 @@
-email: 'mail@domain'
+email: 'kwf2030@163.com'
 
 server:
   host: '0.0.0.0'
@@ -8,6 +8,8 @@ server:
   #key: '/etc/letsencrypt/live/your.domain/privkey.pem'
   user: 'admin'
   password: 'admin'
+  # hiprice-web的地址，如果要在手机或其他设备访问，需要修改，
+  # 如果是用CDN替代hiprice-web，那么此处就是CDN的地址
   web: 'http://localhost:6100'
 
 # 下线短信通知手机号，使用阿里云的消息服务
