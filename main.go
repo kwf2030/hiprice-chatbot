@@ -119,6 +119,12 @@ func initDB() {
       time.Sleep(time.Second * 30)
       continue
     }
+    e = db.Ping()
+    if e != nil {
+      logger.Error().Err(e).Msg("database ping failed, will retry 10 seconds later")
+      time.Sleep(time.Second * 10)
+      continue
+    }
     break
   }
   if db == nil {
