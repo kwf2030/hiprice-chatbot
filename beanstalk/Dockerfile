@@ -27,4 +27,4 @@ ENV PORT=11300
 
 WORKDIR /beanstalk/bin
 
-ENTRYPOINT ["/bin/sh", "-c", "./beanstalkd", "-b", "/beanstalk/data", "-f", "60000", "-l", "0.0.0.0", "-p", "$PORT", "-z", "16777216"]
+ENTRYPOINT ["/bin/sh", "-c", "./beanstalkd -b /beanstalk/data -f 60000 -l 0.0.0.0 -p $PORT -z 16777216"]
