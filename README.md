@@ -17,7 +17,7 @@ docker container run -d --name hiprice-chatbot -p 6200:6200 --link mariadb:maria
 
 Image: `wf2030/mariadb:10.3`, or you can build it yourself in mariadb directory.
 
-Run: `docker container runn -d --name mariadb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root wf2030/mariadb:10.3`
+Run: `docker container run -d --name mariadb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root wf2030/mariadb:10.3`
 
 ### Beanstalk
 
