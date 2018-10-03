@@ -54,4 +54,4 @@ You may need the [docker-compose](docker-compose.yaml) that lauches all services
 
 While all services get up, go to http://localhost:6200/admin to get your wechat bot login, and then congratulations, your bot is working! Send it "help" to see how to play.
 
-__Note: wechat bot uses remark as persistent scheme, it will remarks all your friends with sequence number while you login, that means all your remarks before will be lost and can not restore, use it in caution(you can apply a new wechat account for testing purpose).__
+__Warning: wechat bot uses remark as persistent scheme, it will remark all your friends with sequence number while you login, that means all your remarks before will be lost and can not restore, use it in caution(you can apply a new wechat account for testing purpose).__
