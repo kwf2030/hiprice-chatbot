@@ -255,6 +255,9 @@ func (dp *dispatcher) processMsg(op *wechatbot.Op) {
     } else {
       op.Msg.ReplyText(replyTpl[rand.Intn(len(replyTpl))])
     }
+
+  default:
+    op.Msg.ReplyText(replyTpl[rand.Intn(len(replyTpl))])
   }
 }
 

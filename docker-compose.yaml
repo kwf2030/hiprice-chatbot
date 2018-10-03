@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb:
-    #build: ./mariadb
+#    build: ./mariadb
     image: wf2030/mariadb:10.3
     networks:
       - hpnet
@@ -12,7 +12,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
 
   beanstalk:
-    #build: ./beanstalk
+#    build: ./beanstalk
     image: wf2030/beanstalk:1.11
     networks:
       - hpnet
@@ -20,7 +20,7 @@ services:
       - 11300:11300
 
   hiprice-dispatcher:
-    #build: ./dispatcher
+#    build: ../hiprice-dispatcher
     image: wf2030/hiprice-dispatcher:0.1.0
     networks:
       - hpnet
@@ -29,10 +29,10 @@ services:
       - beanstalk
   
   hiprice-web:
-    #build:
-    #  context: ./web
-    #  args:
-    #    CHATBOT_SERVER: localhost:6200
+#    build:
+#      context: ../hiprice-web
+#      args:
+#        CHATBOT_SERVER: 192.168.1.112:6200
     image: wf2030/hiprice-web:0.1.0
     networks:
       - hpnet
@@ -40,7 +40,7 @@ services:
       - 6100:6100
 
   hiprice-chatbot:
-    #build: ./chatbot
+#    build: ./
     image: wf2030/hiprice-chatbot:0.1.0
     networks:
       - hpnet
