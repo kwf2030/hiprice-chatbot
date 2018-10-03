@@ -233,7 +233,7 @@ func (dp *dispatcher) processMsg(op *wechatbot.Op) {
     v := []byte(op.Msg.FromUserID)
     k := fmt.Sprintf("%x", md5.Sum(v))
     kv.UpdateV(bucketUserID, []byte(k), v)
-    s1 := fmt.Sprintf("%s/web/?u=%s", Conf.Server.Web, k)
+    s1 := fmt.Sprintf("%s/web/index?u=%s", Conf.Server.Web, k)
     s2 := httputil.ShortenURL(s1)
     if s2 == "" {
       s2 = s1
