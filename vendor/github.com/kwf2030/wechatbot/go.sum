@@ -1,0 +1,4 @@
+github.com/kwf2030/commons v1.0.0 h1:e2oJiRW3CgHZx/gK6AHH2jJBp2dt23L8Yew0fZcR3vU=
+github.com/kwf2030/commons v1.0.0/go.mod h1:isAtI5J+6Vdpg8hIt+oZ8rE9AQGaawlD64uY1Yu7iBc=
+github.com/rs/zerolog v1.9.1 h1:AjV/SFRF0+gEa6rSjkh0Eji/DnkrJKVpPho6SW5g4mU=
+github.com/rs/zerolog v1.9.1/go.mod h1:YbFCdg8HfsridGWAh22vktObvhZbQsZXe4/zB0OKkWU=
