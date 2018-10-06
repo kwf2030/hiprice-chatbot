@@ -56,4 +56,10 @@ While all services get up, go to http://localhost:6200/admin to get your wechat 
 
 __Warning: wechat bot uses remark as persistent scheme, it will remark all your friends with sequence number while you login, that means all your remarks before will be lost and can not restore, use it in caution(you can apply a new wechat account for testing purpose).__
 
-_I have already deployed such a bot service, add wechat friend __hiprice001__ for more details._
+_I have already deployed such a bot service, add wechat friend __hiprice001__ for more details, here are some screenshots_
+
+![](assets/welcome1.png)
+
+
+
+![](assets/welcome2.png)
