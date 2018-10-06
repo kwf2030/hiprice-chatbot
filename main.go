@@ -17,7 +17,7 @@ import (
   "errors"
 )
 
-const Version = "1.0.0"
+const Version = "1.0.1"
 
 var (
   bucketUserID  = []byte("user_id")
