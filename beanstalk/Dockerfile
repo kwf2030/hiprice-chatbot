@@ -7,7 +7,6 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.8/main > /etc/apk/repositories && \
     echo http://mirrors.aliyun.com/alpine/v3.8/community >> /etc/apk/repositories
 
 RUN apk update && \
-    apk upgrade && \
     apk add --no-cache git && \
     apk add --virtual build-base && \
     mkdir -p /beanstalk/bin /beanstalk/data
