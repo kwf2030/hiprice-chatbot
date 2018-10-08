@@ -9,7 +9,7 @@ HiPrice is a wechat bot for personal account.
 
 It receives product links and crawls regularly, you will be notified when its price goes up/down.
 
-_I have already deployed such a bot service, add wechat friend __hiprice001__ for more details._
+_I have already deployed such a bot, if you want to use this price notification service or have a look, add wechat friend __hiprice001__._
 
 ![](assets/welcome1.png)
 

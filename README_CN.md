@@ -6,7 +6,7 @@ HiPrice 是一个微信个人号机器人。
 
 给他发送或分享商品链接，它会定时爬取这些商品信息，在涨价/降价的时候通知你。
 
-_已经在线上部署了一个机器人，详情请添加微信好友 __hiprice001__。_
+_我已经部署了一个机器人，想使用这个提醒服务或想看看效果请添加微信好友 __hiprice001__。_
 
 ![](assets/welcome1.png)
 
@@ -59,14 +59,14 @@ docker container run -d --name hiprice-chatbot -p 6200:6200 --link mariadb:maria
 - [hiprice-chatbot](https://github.com/kwf2030/hiprice-chatbot)
   HiPrice 微信机器人。包括一个用于登录的控制台页面。需要 MySQL/MariaDB 和 Beanstalk。
 - [hiprice-dispatcher](https://github.com/kwf2030/hiprice-dispatcher)
-  HiPrice 任务分发端。收集商品链接分发给爬虫。需要 MySQL/MariaDB 和 Beanstalk。
+  HiPrice 任务分发。收集商品链接分发给爬虫。需要 MySQL/MariaDB 和 Beanstalk。
 - [hiprice-runner](https://github.com/kwf2030/hiprice-runner)
-  HiPrice 爬虫。可以部署任意多个，爬虫是"分布式的"。需要 Beanstalk 和 Chrome/Chromium。
+  HiPrice 爬虫。可以部署任意多节点，因为爬虫是天然"分布式的"。需要 Beanstalk 和 Chrome/Chromium。
 - [hiprice-web](https://github.com/kwf2030/hiprice-web)
   HiPrice Web 页面。管理已关注的商品。
 
 你可能会需要 [docker-compose](docker-compose.yaml) 一键启动所有服务，docker-compose 没有包括爬虫，需要手动编译运行。
 
-所有服务运行起来后，访问 http://localhost:6200/admin 登录微信机器人，登录后即已经全部部署完毕！给机器人发送“帮助”看看如何玩转。
+所有服务运行起来后，进入 http://localhost:6200/admin 登录微信机器人，登录后即全部搞定！给机器人发送“帮助”看看如何玩转它。
 
 __注意：微信机器人使用备注作为持久化方案，它会使用序列号备注你所有的联系人，这意味着你之前的备注都将被覆盖且无法恢复，请谨慎使用（如果想要测试，可以使用我部署的 hiprice001，或重新申请一个微信号)。__
