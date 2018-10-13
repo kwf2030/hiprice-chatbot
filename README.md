@@ -57,7 +57,7 @@ Run: `docker container run -d --name beanstalk -p 11300:11300 wf2030/beanstalk:1
 
 ### Tips
 
-The whole project has 4 sub projects:
+Currently the whole project has 4 sub projects(now is refactoring):
 
 - [hiprice-chatbot](https://github.com/kwf2030/hiprice-chatbot)
   Chat bot for HiPrice. Also contains admin console for bot login. Requires MySQL/MariaDB and Beanstalk.

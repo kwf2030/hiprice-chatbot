@@ -54,7 +54,7 @@ docker container run -d --name hiprice-chatbot -p 6200:6200 --link mariadb:maria
 
 ### 提示
 
-整个项目分为4个子项目：
+目前整个项目分为4个子项目（正在重构）：
 
 - [hiprice-chatbot](https://github.com/kwf2030/hiprice-chatbot)
   HiPrice 微信机器人。包括一个用于登录的控制台页面。需要 MySQL/MariaDB 和 Beanstalk。
