@@ -1,8 +1,46 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<h1>{{ title }}! </h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<nz-layout class="layout">
+  <ul nz-menu [nzMode]="'horizontal'" style="font-size: 110%;">
+    <div style="float: left; font-size: 150%">
+      <img src="favicon.ico">
+      <span style="margin-left: 16px">HiPrice</span>
+    </div>
+
+    <li nz-submenu style="margin-left: 1em;">
+      <span title><i class="anticon anticon-home"></i>首页</span>
+      <ul>
+        <li nz-menu-item>监控</li>
+        <li nz-menu-item>分析</li>
+        <li nz-menu-item>机器人</li>
+      </ul>
+    </li>
+
+    <li nz-submenu>
+      <span title><i class="anticon anticon-table"></i>数据</span>
+      <ul>
+        <li nz-menu-item>用户</li>
+        <li nz-menu-item>商品</li>
+        <li nz-menu-item>消息</li>
+      </ul>
+    </li>
+
+    <li nz-submenu>
+      <span title><i class="anticon anticon-code-o"></i>爬虫</span>
+      <ul>
+        <li nz-menu-item>配置</li>
+        <li nz-menu-item>规则</li>
+      </ul>
+    </li>
+
+    <li nz-submenu>
+      <span title><i class="anticon anticon-taobao"></i>淘客</span>
+      <ul>
+        <li nz-menu-item>预留</li>
+        <li nz-menu-item>预留</li>
+      </ul>
+    </li>
+  </ul>
+
+  <nz-content style="padding:24px;">
+    <router-outlet></router-outlet>
+  </nz-content>
+</nz-layout>
