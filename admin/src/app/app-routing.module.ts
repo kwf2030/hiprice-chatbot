@@ -3,7 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {BotComponent} from "./bot/bot.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/bot', pathMatch: 'full'},
   {path: 'bot', component: BotComponent},
 ]
 

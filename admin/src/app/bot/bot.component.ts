@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BotComponent implements OnInit {
 
+  bots: string[];
+
   constructor() { }
 
   ngOnInit() {
+    this.bots = ["a", "b", "c", "d"];
   }
 
 }

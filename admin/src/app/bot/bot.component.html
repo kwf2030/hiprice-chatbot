@@ -1,41 +1,49 @@
-<div style="min-height: 280px;">
-  <nz-breadcrumb style="margin:16px 0;">
+<div style="min-height: 256px;">
+    <nz-breadcrumb style="margin:1em 1em 0 1em;">
     <nz-breadcrumb-item>首页</nz-breadcrumb-item>
     <nz-breadcrumb-item>机器人</nz-breadcrumb-item>
   </nz-breadcrumb>
 
-  <div nz-row>
+  <div nz-row nzType="flex" nzJustify="start" nzAlign="bottom" style="margin: 1em">
     <div nz-col nzSpan="6">
-      <nz-card style="width:256px; margin-top: 16px;" [nzExtra]="addTemplate">
-        <p></p>
-        <p>+</p>
-        <p></p>
-      </nz-card>
+      <button nz-button nzType="dashed"
+              style="width: 256px; height: 192px; font-size: 400%;">+
+      </button>
     </div>
 
-    <div nz-col nzSpan="6">
-      <nz-card style="width: 256px; margin-top: 16px;" [nzActions]="[actionSetting,actionEdit,actionEllipsis]">
-        <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{size: 'large'}">
-          <nz-card-meta [nzAvatar]="avatarTemplate" nzTitle="Card title"
-                        nzDescription="This is the description"></nz-card-meta>
-        </nz-skeleton>
+    <div *ngFor="let bot of bots" nz-col nzSpan="6">
+      <nz-card [nzActions]="[actionSetting,actionEdit,actionEllipsis]"
+               style="width: 256px; height: 192px;">
+        <nz-card-meta [nzAvatar]="avatarTpl"
+                      [nzTitle]="titleTpl"
+                      [nzDescription]="descTpl">
+        </nz-card-meta>
+
+        <ng-template #avatarTpl>
+          <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+        </ng-template>
+
+        <ng-template #titleTpl>
+          <p>x</p>
+        </ng-template>
+
+        <ng-template #descTpl>
+          <p>xx</p>
+          <p></p>
+        </ng-template>
+
+        <ng-template #actionSetting>
+          <i class="anticon anticon-setting"></i>
+        </ng-template>
+
+        <ng-template #actionEdit>
+          <i class="anticon anticon-edit"></i>
+        </ng-template>
+
+        <ng-template #actionEllipsis>
+          <i class="anticon anticon-ellipsis"></i>
+        </ng-template>
       </nz-card>
-
-      <ng-template #avatarTemplate>
-        <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
-      </ng-template>
-
-      <ng-template #actionSetting>
-        <i class="anticon anticon-setting"></i>
-      </ng-template>
-
-      <ng-template #actionEdit>
-        <i class="anticon anticon-edit"></i>
-      </ng-template>
-
-      <ng-template #actionEllipsis>
-        <i class="anticon anticon-ellipsis"></i>
-      </ng-template>
     </div>
   </div>
 </div>
