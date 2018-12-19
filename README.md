@@ -1,5 +1,7 @@
 [中文文档](README_CN.md)
 
+__This project is being rewrite, maybe is unavailable currently.__
+
 # hiprice-chatbot
 
 Chatbot for HiPrice.
