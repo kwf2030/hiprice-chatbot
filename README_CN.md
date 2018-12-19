@@ -1,3 +1,5 @@
+__本项目正在重写，当前版本暂不可用。__
+
 # hiprice-chatbot
 HiPrice 微信机器人。
 
